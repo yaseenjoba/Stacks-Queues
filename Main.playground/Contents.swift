@@ -5,6 +5,7 @@
 //  Created by Yassen Joba on 20/06/2023.
 //
 import Foundation
+
 class Node{
     var id: UUID
     var description: String
@@ -13,6 +14,7 @@ class Node{
         self.description = "this is a description for \(self.id)"
     }
 }
+
 class Stack<T>{
     var array: [T]
     init(){
@@ -40,6 +42,7 @@ class Stack<T>{
         return true
     }
 }
+
 var stack: Stack = Stack<Node>()
 print("Here are all objects")
 for _ in 0..<5{
