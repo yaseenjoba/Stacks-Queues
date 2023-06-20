@@ -16,7 +16,7 @@ class Node{
 }
 
 class Stack<T>{
-    var array: [T]
+    private var array: [T]
     init(){
         self.array = []
     }
@@ -42,13 +42,41 @@ class Stack<T>{
         return true
     }
 }
-
+class Queue<T>{
+    private var array: [T]
+    init(){
+        self.array = []
+    }
+    func add(_ newElement: T){
+        array.append(newElement)
+    }
+    func remove(){
+        guard array.count > 0 else{
+            return
+        }
+        array.removeFirst()
+    }
+    func peek() -> T?{
+        guard array.count > 0 else{
+            return nil
+        }
+        return array.first
+    }
+    func isEmpty() -> Bool{
+        if array.count > 0 {
+            return false
+        }
+        return true
+    }
+}
 var stack: Stack = Stack<Node>()
+var queue: Queue = Queue<Node>()
 print("Here are all objects")
 for _ in 0..<5{
     var node = Node()
     print(node.id)
     stack.push(node)
+    queue.add(node)
 }
 print("The stack Output: \n")
 while !stack.isEmpty(){
@@ -57,5 +85,11 @@ while !stack.isEmpty(){
     }
     stack.pop()
 }
-
+print("The Queue Output: \n")
+while !queue.isEmpty(){
+    if let element = queue.peek(){
+        print(element.id)
+    }
+    queue.remove()
+}
 
