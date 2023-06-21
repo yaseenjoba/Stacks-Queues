@@ -29,7 +29,7 @@ class Node: Hashable, Equatable , Comparable{
     
 }
 class ExtraOperations<T: Hashable & Comparable>{
-    internal var array: [T] = []
+    var array: [T] = []
     var maxCapacity: Int?
     init(){}
     required init(_ maxCapacity:Int){}
@@ -106,12 +106,6 @@ class ExtraOperations<T: Hashable & Comparable>{
     }
 }
 class Stack<T: Hashable & Comparable>: ExtraOperations<T>{
-    internal override var array: [T]{
-        didSet{}
-    }
-    override var maxCapacity: Int?{
-        didSet{}
-    }
     override init(){
         super.init()
         self.array = []
@@ -147,12 +141,7 @@ class Stack<T: Hashable & Comparable>: ExtraOperations<T>{
     }
 }
 class Queue<T: Hashable & Comparable>: ExtraOperations<T>{
-    internal override var array: [T]{
-        didSet{}
-    }
-    override var maxCapacity: Int?{
-        didSet{}
-    }
+    
     override init(){
         super.init()
         self.array = []
