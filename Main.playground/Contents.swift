@@ -7,10 +7,10 @@
 import Foundation
 
 class Node: Hashable, Equatable , Comparable{
-    var id: Int
+    var id: UUID
     var description: String
     init(){
-        self.id = Int.random(in: 0..<200)
+        self.id = UUID()
         self.description = "this is a description for \(self.id)"
     }
     static func == (lhs: Node, rhs: Node) -> Bool {
@@ -24,7 +24,7 @@ class Node: Hashable, Equatable , Comparable{
         hasher.combine(description)
     }
     static func < (lhs: Node, rhs: Node) -> Bool {
-        return lhs.id < rhs.id
+        return lhs.id.uuidString < rhs.id.uuidString
     }
     
 }
@@ -32,10 +32,10 @@ class ExtraOperations<T: Hashable & Comparable>{
     var array: [T]
     var maxCapacity: Int?
     init(){
-        array = []
+        self.array = []
     }
     required init(_ maxCapacity:Int){
-        array = []
+        self.array = []
         self.maxCapacity = maxCapacity
     }
     private func mergeSort(array: inout [T], startIndex: Int, endIndex: Int) {
@@ -144,14 +144,11 @@ class Stack<T: Hashable & Comparable>: ExtraOperations<T>{
     }
 }
 class Queue<T: Hashable & Comparable>: ExtraOperations<T>{
-    
     override init(){
         super.init()
-        self.array = []
     }
     required init(_ maxCapacity: Int) {
-        super.init()
-        self.maxCapacity = maxCapacity
+        super.init(maxCapacity)
     }
     func add(_ newElement: T){
         array.append(newElement)
@@ -207,6 +204,13 @@ for _ in 0..<100{
     var node = Node()
     testSortingStackWithCapacity.push(node)
 }
+
+print("Sorting test..")
+testSortingStackWithCapacity.sort()
+for i in testSortingStackWithCapacity.array{
+    print(i.id)
+}
+
 print("The stack Output: \n")
 while !testSortingStackWithCapacity.isEmpty(){
     if let x = testSortingStackWithCapacity.peek(){
