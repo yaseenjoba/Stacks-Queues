@@ -20,8 +20,8 @@ class Node: Hashable, Equatable , Comparable{
         return false
     }
     func hash(into hasher: inout Hasher) {
-           hasher.combine(id)
-           hasher.combine(description)
+        hasher.combine(id)
+        hasher.combine(description)
     }
     static func < (lhs: Node, rhs: Node) -> Bool {
         return lhs.id < rhs.id
@@ -29,10 +29,15 @@ class Node: Hashable, Equatable , Comparable{
     
 }
 class ExtraOperations<T: Hashable & Comparable>{
-    var array: [T] = []
+    var array: [T]
     var maxCapacity: Int?
-    init(){}
-    required init(_ maxCapacity:Int){}
+    init(){
+        array = []
+    }
+    required init(_ maxCapacity:Int){
+        array = []
+        self.maxCapacity = maxCapacity
+    }
     private func mergeSort(array: inout [T], startIndex: Int, endIndex: Int) {
         // Base case
         if startIndex >= endIndex {
@@ -108,11 +113,9 @@ class ExtraOperations<T: Hashable & Comparable>{
 class Stack<T: Hashable & Comparable>: ExtraOperations<T>{
     override init(){
         super.init()
-        self.array = []
     }
     required init(_ maxCapacity: Int) {
-        super.init()
-        self.maxCapacity = maxCapacity
+        super.init(maxCapacity)
     }
     func pop(){
         guard array.count > 0 else{
